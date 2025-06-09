@@ -1,0 +1,93 @@
+import 'package:flutter/material.dart';
+
+class TelaSupino extends StatelessWidget {
+  const TelaSupino({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F8F8),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 40),
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/IMG_6624.jpeg',
+                width: 250,
+                height: 150,
+                fit: BoxFit.contain,
+              ),
+              const SizedBox(height: 10),
+              _buildBlackButton('Supino', vertical: 10, horizontal: 50),
+              _buildBlackButton('Adicionar treino', vertical: 15, horizontal: 70),
+
+              // Repetições e Peso - 4 linhas
+              for (int i = 0; i < 4; i++) _buildSetRow(),
+
+              const SizedBox(height: 30),
+              // Imagem 'barra.png' removida
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBlackButton(String text, {double vertical = 10, double horizontal = 50}) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 20),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.black,
+          padding: EdgeInsets.symmetric(vertical: vertical, horizontal: horizontal),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          elevation: 2,
+        ),
+        onPressed: () {
+          // ação
+        },
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSetRow() {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildInput('Repetições'),
+          _buildInput('Peso'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInput(String hint) {
+    return Container(
+      width: 100,
+      margin: const EdgeInsets.symmetric(horizontal: 5),
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: hint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding: const EdgeInsets.all(10),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+        ),
+      ),
+    );
+  }
+}
