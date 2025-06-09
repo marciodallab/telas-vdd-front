@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+
+class ExerciciosScreen extends StatelessWidget {
+  const ExerciciosScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F8FF),
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 40),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start, // Altere para start
+            children: [
+              // Logo
+              Column(
+                children: [
+                  Image.asset(
+                    'assets/images/IMG_6624.jpeg', // Atualize o caminho se necessário
+                    width: 250,
+                    height: 100,
+                    fit: BoxFit.contain,
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+              // Lista de Exercícios
+              Column(
+                children: [
+                  _buildExerciseRow('🏋️‍♂️', 'Supino'),
+                  const SizedBox(height: 10),
+                  _buildExerciseRow('🏋️', 'Deadlift'),
+                  const SizedBox(height: 10),
+                  _buildExerciseRow('🤸‍♂️', 'Barra Fixa'),
+                  const SizedBox(height: 10),
+                  _buildExerciseRow('🏃‍♂️', 'Corrida'),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildExerciseRow(String emoji, String title) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Row(
+        children: [
+          Text(
+            emoji,
+            style: const TextStyle(fontSize: 28),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                elevation: 3,
+                shadowColor: Colors.black.withOpacity(0.25),
+              ),
+              onPressed: () {
+                // Ação ao tocar o botão (opcional)
+              },
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 25,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
